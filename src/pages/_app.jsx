@@ -1,5 +1,6 @@
 import NextApp from 'next/app'
 
+import '~/services/firebase'
 import '~/global-styles.scss'
 
 class App extends NextApp {
