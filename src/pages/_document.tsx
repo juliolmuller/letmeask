@@ -1,15 +1,14 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable @next/next/no-page-custom-font */
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 
 class Document extends NextDocument {
-  render() {
+  render() { // eslint-disable-line class-methods-use-this
     return (
       <Html lang="pt-BR">
         <Head>
-          <title>Create Next App</title>
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" />
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Roboto:wght@400;500&display=swap" />
         </Head>
         <body>
           <Main />
