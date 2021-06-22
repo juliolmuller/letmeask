@@ -1,7 +1,7 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import firebase, { auth } from '~/services/firebase'
 
-import type { FC } from 'react'
+import type { ReactNode } from 'react'
 
 export type User = {
   id: string
@@ -14,12 +14,30 @@ export type AuthContextProps = {
   signInWithGoogle: () => Promise<boolean>
 }
 
+export type AuthProviderProps = {
+  children: ReactNode
+}
+
 const AuthContext = createContext({} as AuthContextProps)
 
 export const useAuthContext = () => useContext(AuthContext)
 
-export const AuthProvider: FC = ({ children }) => {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>()
+
+  function setUserFromRaw(rawUser: firebase.User) {
+    const {
+      displayName: name,
+      photoURL: avatar,
+      uid: id,
+    } = rawUser
+
+    if (!name || !avatar) {
+      throw new Error('Missing information from Google account.')
+    }
+
+    setUser({ id, name, avatar })
+  }
 
   async function signInWithGoogle() {
     if (user) {
@@ -34,17 +52,7 @@ export const AuthProvider: FC = ({ children }) => {
         throw new Error('Failed to get data from Google Account.')
       }
 
-      const {
-        displayName: name,
-        photoURL: avatar,
-        uid: id,
-      } = response.user
-
-      if (!name || !avatar) {
-        throw new Error('Missing information from Google account.')
-      }
-
-      setUser({ id, name, avatar })
+      setUserFromRaw(response.user)
 
       return true
     } catch (error) {
@@ -56,11 +64,20 @@ export const AuthProvider: FC = ({ children }) => {
     }
   }
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((rawUser) => {
+      rawUser && setUserFromRaw(rawUser)
+    })
+
+    return () => unsubscribe()
+  }, [])
+
   return (
-    <AuthContext.Provider value={{
-      user,
-      signInWithGoogle,
-    }}
+    <AuthContext.Provider
+      value={{
+        user,
+        signInWithGoogle,
+      }}
     >{children}</AuthContext.Provider>
   )
 }
