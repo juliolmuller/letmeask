@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import Button from '~/components/Button'
 import { useRouter } from 'next/router'
-import { useAuthContext } from '~/contexts'
+import { useAuth } from '~/contexts'
 import styles from './styles.module.scss'
 
 function SignInPage() {
   const router = useRouter()
-  const { signInWithGoogle } = useAuthContext()
+  const { signInWithGoogle } = useAuth()
 
   async function handleAuthenticate() {
     await signInWithGoogle() && router.push('/rooms/new')
