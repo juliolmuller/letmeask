@@ -28,3 +28,9 @@ if (!firebase.apps.length) {
     console.info('Firebase initialized')
   }
 }
+
+export const auth = firebase.auth()
+export const database = firebase.database()
+
+export { firebase }
+export default firebase

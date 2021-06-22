@@ -1,6 +1,5 @@
 import NextApp from 'next/app'
-
-import '~/services/firebase'
+import { AuthProvider } from '~/contexts'
 import '~/global-styles.scss'
 
 class App extends NextApp {
@@ -8,7 +7,9 @@ class App extends NextApp {
     const { Component, pageProps } = this.props
 
     return (
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     )
   }
 }

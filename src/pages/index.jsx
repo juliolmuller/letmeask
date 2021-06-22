@@ -1,8 +1,17 @@
 import Image from 'next/image'
 import Button from '~/components/Button'
+import { useRouter } from 'next/router'
+import { useAuthContext } from '~/contexts'
 import styles from './styles.module.scss'
 
 function SignInPage() {
+  const router = useRouter()
+  const { signInWithGoogle } = useAuthContext()
+
+  async function handleAuthenticate() {
+    await signInWithGoogle() && router.push('/rooms/new')
+  }
+
   return (
     <div className={styles.signInPage}>
       <aside>
@@ -27,7 +36,11 @@ function SignInPage() {
             height={120}
             width={320}
           />
-          <button type="button" className={styles.btnGoogle}>
+          <button
+            type="button"
+            className={styles.btnGoogle}
+            onClick={handleAuthenticate}
+          >
             <Image
               src="/img/google-icon.svg"
               alt="Google's logo"
