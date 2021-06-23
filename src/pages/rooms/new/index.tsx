@@ -1,9 +1,32 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from '~/components/Button'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import { useAuth } from '~/contexts'
+import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
+import type { FormEvent } from 'react'
+
 function NewRoomPage() {
+  const router = useRouter()
+  const { user } = useAuth()
+  const [roomName, setRoomName] = useState('')
+
+  async function handleCreateRoom(event: FormEvent) {
+    event.preventDefault()
+
+    const reference = database.ref('rooms')
+    const newRoom = await reference.push({
+      title: roomName.trim(),
+      authorId: user?.id,
+      createdAt: new Date().toISOString(),
+    })
+
+    router.push(`/rooms/${newRoom.key}`)
+  }
+
   return (
     <div className={styles.signInPage}>
       <aside>
@@ -30,12 +53,14 @@ function NewRoomPage() {
           />
 
           <h2>Criar uma nova sala</h2>
-          <form>
+          <form onSubmit={handleCreateRoom}>
             <input
               type="text"
               placeholder="Nome da sala"
+              value={roomName}
+              onChange={(event) => setRoomName(event.target.value)}
             />
-            <Button type="submit">
+            <Button type="submit" disabled={!roomName.trim()}>
               Criar Sala
             </Button>
           </form>
