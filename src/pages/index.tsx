@@ -1,15 +1,33 @@
 import Image from 'next/image'
 import Button from '~/components/Button'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { useAuth } from '~/contexts'
+import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
+
+import type { FormEvent } from 'react'
 
 function SignInPage() {
   const router = useRouter()
   const { signInWithGoogle } = useAuth()
+  const [roomKey, setRoomKey] = useState('')
 
   async function handleAuthenticate() {
     await signInWithGoogle() && router.push('/rooms/new')
+  }
+
+  async function handleJoinRoom(event: FormEvent) {
+    event.preventDefault()
+
+    const roomRef = await database.ref(`rooms/${roomKey}`).get()
+
+    if (!roomRef.exists()) {
+      alert('Sala não encontrada.')
+      return
+    }
+
+    router.push(`/rooms/${roomKey}`)
   }
 
   return (
@@ -54,12 +72,14 @@ function SignInPage() {
           <div className={styles.separator}>
             Entrar em uma sala
           </div>
-          <form>
+          <form onSubmit={handleJoinRoom}>
             <input
               type="text"
               placeholder="Digite o código da sala"
+              value={roomKey}
+              onChange={(event) => setRoomKey(event.target.value)}
             />
-            <Button type="submit">
+            <Button type="submit" disabled={!roomKey.trim()}>
               Entrar na Sala
             </Button>
           </form>
