@@ -28,7 +28,7 @@ function NewRoomPage() {
   }
 
   return (
-    <div className={styles.signInPage}>
+    <div className={styles.newRoomPage}>
       <aside>
         <Image
           src="/img/illustration.svg"
