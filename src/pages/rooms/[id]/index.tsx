@@ -2,17 +2,32 @@ import Image from 'next/image'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAuth } from '~/contexts'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
 import type { FormEvent } from 'react'
 
+export type Question = {
+  id: string
+  content: string
+  author: {
+    name: string
+    avatar: string
+  }
+  isHighlighted: boolean
+  isAnswered: boolean
+}
+
+type FirebaseQuestions = Record<string, Question>
+
 function RoomDetailsPage() {
   const { user, signInWithGoogle } = useAuth()
   const roomId = useRouter().query.id as string
   const [newQuestion, setNewQuestion] = useState('')
+  const [roomTitle, setRoomTitle] = useState('Sala')
+  const [questions, setQuestions] = useState<Question[]>([])
 
   const canSubmitQuestion = Boolean(user && newQuestion.trim())
 
@@ -41,6 +56,20 @@ function RoomDetailsPage() {
     setNewQuestion('')
   }
 
+  useEffect(() => {
+    database.ref(`/rooms/${roomId}`).on('value', (event) => {
+      const room = event.val()
+
+      if (room) {
+        const rawQuestions = room.questions as FirebaseQuestions
+        const parsedQuestions = Object.entries(rawQuestions ?? {}).map(([id, value]) => ({ ...value, id }))
+
+        setRoomTitle(room.title)
+        setQuestions(parsedQuestions)
+      }
+    })
+  }, [roomId])
+
   return (
     <div className={styles.roomDetailsPage}>
       <header>
@@ -58,8 +87,10 @@ function RoomDetailsPage() {
 
       <main>
         <div className={styles.title}>
-          <h1>Sala Josnei</h1>
-          <span>4 perguntas</span>
+          <h1>{roomTitle}</h1>
+          {questions.length > 0 && (
+            <span>{questions.length} pergunta{questions.length > 1 && 's'}</span>
+          )}
         </div>
 
         <form onSubmit={handleCreateQuestion}>
@@ -90,6 +121,8 @@ function RoomDetailsPage() {
             </Button>
           </div>
         </form>
+
+        {questions.map((question) => JSON.stringify(question))}
       </main>
     </div>
   )
