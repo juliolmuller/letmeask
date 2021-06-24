@@ -3,32 +3,18 @@ import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { useAuth } from '~/contexts'
+import { useState } from 'react'
+import { useAuth, useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
 import type { FormEvent } from 'react'
 
-export type Question = {
-  id: string
-  content: string
-  author: {
-    name: string
-    avatar: string
-  }
-  isHighlighted: boolean
-  isAnswered: boolean
-}
-
-type FirebaseQuestions = Record<string, Question>
-
 function RoomDetailsPage() {
-  const { user, signInWithGoogle } = useAuth()
   const roomId = useRouter().query.id as string
+  const { user, signInWithGoogle } = useAuth()
+  const { roomTitle, questions } = useRoom(roomId)
   const [newQuestion, setNewQuestion] = useState('')
-  const [roomTitle, setRoomTitle] = useState('Sala')
-  const [questions, setQuestions] = useState<Question[]>([])
 
   const canSubmitQuestion = Boolean(user && newQuestion.trim())
 
@@ -56,20 +42,6 @@ function RoomDetailsPage() {
 
     setNewQuestion('')
   }
-
-  useEffect(() => {
-    database.ref(`/rooms/${roomId}`).on('value', (event) => {
-      const room = event.val()
-
-      if (room) {
-        const rawQuestions = room.questions as FirebaseQuestions
-        const parsedQuestions = Object.entries(rawQuestions ?? {}).map(([id, value]) => ({ ...value, id }))
-
-        setRoomTitle(room.title)
-        setQuestions(parsedQuestions)
-      }
-    })
-  }, [roomId])
 
   return (
     <div className={styles.roomDetailsPage}>
