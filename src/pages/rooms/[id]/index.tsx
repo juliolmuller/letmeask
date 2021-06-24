@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
+import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAuth } from '~/contexts'
@@ -122,7 +123,11 @@ function RoomDetailsPage() {
           </div>
         </form>
 
-        {questions.map((question) => JSON.stringify(question))}
+        <div className={styles.questionsList}>
+          {questions.map((question) => (
+            <QuestionCard key={question.id} {...question} />
+          ))}
+        </div>
       </main>
     </div>
   )
