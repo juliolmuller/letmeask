@@ -2,11 +2,17 @@ import styles from './styles.module.scss'
 
 import type { ButtonHTMLAttributes } from 'react'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  outline?: boolean
+}
 
-function Button(props: ButtonProps) {
+function Button({ outline = false, type = 'button', ...props }: ButtonProps) {
   return (
-    <button className={styles.button} {...props} />
+    <button
+      type={type}
+      className={`${styles.button} ${outline ? styles.outline : ''}`}
+      {...props}
+    />
   )
 }
 
