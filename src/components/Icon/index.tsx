@@ -1,19 +1,25 @@
+import AnswerIcon from './Answer'
+import CheckIcon from './Check'
 import DeleteIcon from './Delete'
 import LikeIcon from './Like'
 
 export type IconProps = {
-  name: 'like' | 'delete'
+  name: 'answer' | 'check' | 'delete' | 'like'
 }
 
 function Icon({ name }: IconProps) {
-  if (name === 'delete') {
-    return <DeleteIcon />
+  switch (name) {
+    case 'answer':
+      return <AnswerIcon />
+    case 'check':
+      return <CheckIcon />
+    case 'delete':
+      return <DeleteIcon />
+    case 'like':
+      return <LikeIcon />
+    default:
+      return null
   }
-  if (name === 'like') {
-    return <LikeIcon />
-  }
-
-  return null
 }
 
 export default Icon

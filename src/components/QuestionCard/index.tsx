@@ -10,11 +10,25 @@ export type QuestionCardProps = {
     name: string
     avatar: string
   }
+  isHighlighted: boolean
+  isAnswered: boolean
 }
 
-function QuestionCard({ children, content, author }: QuestionCardProps) {
+function QuestionCard({
+  children,
+  content,
+  author,
+  isAnswered,
+  isHighlighted,
+}: QuestionCardProps) {
   return (
-    <div className={styles.questionCard}>
+    <div
+      className={`
+        ${styles.questionCard}
+        ${isAnswered ? styles.isAnswered : ''}
+        ${isHighlighted ? styles.isHighlighted : ''}
+      `}
+    >
       {content.split('\n').map((paragraph, index) => (
         <p key={index}>{paragraph}</p>
       ))}
@@ -29,7 +43,9 @@ function QuestionCard({ children, content, author }: QuestionCardProps) {
           />
           <span>{author.name}</span>
         </div>
-        <div>{children}</div>
+        <div className={styles.actionButtons}>
+          {children}
+        </div>
       </footer>
     </div>
   )

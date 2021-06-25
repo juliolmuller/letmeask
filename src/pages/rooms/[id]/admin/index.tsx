@@ -25,6 +25,24 @@ function AdminRoomDetailsPage() {
     }
   }
 
+  async function handleMarkQuestionAsAnswered(question: Question) {
+    const isAnswered = !question.isAnswered
+    const isHighlighted = isAnswered ? false : question.isHighlighted
+
+    await database.ref(`rooms/${roomId}/questions/${question.id}`).update({
+      isHighlighted,
+      isAnswered,
+    })
+  }
+
+  async function handleHighlightQuestion(question: Question) {
+    const isHighlighted = !question.isHighlighted
+
+    await database.ref(`rooms/${roomId}/questions/${question.id}`).update({
+      isHighlighted,
+    })
+  }
+
   async function handleDeleteQuestion(question: Question) {
     if (confirm('Tem certeza que deseja excluir esta pergunta?')) {
       await database.ref(`rooms/${roomId}/questions/${question.id}`).remove()
@@ -60,6 +78,22 @@ function AdminRoomDetailsPage() {
         <div className={styles.questionsList}>
           {questions.map((question) => (
             <QuestionCard key={question.id} {...question}>
+              <button
+                type="button"
+                title={`Marcar como ${question.isAnswered ? 'pendente' : 'respondida'}`}
+                className={question.isAnswered ? styles.checked : ''}
+                onClick={() => handleMarkQuestionAsAnswered(question)}
+              >
+                <Icon name="check" />
+              </button>
+              <button
+                type="button"
+                title={question.isHighlighted ? 'Remover destaque' : 'Destacar pergunta'}
+                className={question.isHighlighted ? styles.checked : ''}
+                onClick={() => handleHighlightQuestion(question)}
+              >
+                <Icon name="answer" />
+              </button>
               <button
                 type="button"
                 title="Excluir pergunta"
