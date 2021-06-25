@@ -8,7 +8,7 @@ import { useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
-import type { Question } from '~/hooks/useRoom'
+import type { Question } from '~/types'
 
 function AdminRoomDetailsPage() {
   const router = useRouter()

@@ -2,18 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '~/contexts'
 import { database } from '~/services/firebase'
 
-export type Question = {
-  id: string
-  content: string
-  author: {
-    name: string
-    avatar: string
-  }
-  isHighlighted: boolean
-  isAnswered: boolean
-  likesCount: number
-  likeId: string | undefined
-}
+import type { Question } from '~/types'
 
 export type FirebaseQuestions = Record<string, {
   id: string

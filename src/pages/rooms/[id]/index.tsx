@@ -10,7 +10,7 @@ import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
 import type { FormEvent } from 'react'
-import type { Question } from '~/hooks/useRoom'
+import type { Question } from '~/types'
 
 function RoomDetailsPage() {
   const roomId = useRouter().query.id as string
