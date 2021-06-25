@@ -19,7 +19,9 @@ function useRoom(roomId: string) {
   const [questions, setQuestions] = useState<Question[]>([])
 
   useEffect(() => {
-    database.ref(`/rooms/${roomId}`).on('value', (event) => {
+    const roomRef = database.ref(`/rooms/${roomId}`)
+
+    roomRef.on('value', (event) => {
       const room = event.val()
 
       if (room) {
@@ -30,6 +32,8 @@ function useRoom(roomId: string) {
         setQuestions(parsedQuestions)
       }
     })
+
+    return () => roomRef.off('value')
   }, [roomId])
 
   return {
