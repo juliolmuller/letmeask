@@ -26,6 +26,10 @@ function SignInPage() {
       alert('Sala não encontrada.')
       return
     }
+    if (!roomRef.val().closedAt) {
+      alert('Sala já encerrada.')
+      return
+    }
 
     router.push(`/rooms/${roomKey}`)
   }

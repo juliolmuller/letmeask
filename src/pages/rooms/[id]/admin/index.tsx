@@ -11,8 +11,19 @@ import styles from './styles.module.scss'
 import type { Question } from '~/hooks/useRoom'
 
 function AdminRoomDetailsPage() {
-  const roomId = useRouter().query.id as string
+  const router = useRouter()
+  const roomId = router.query.id as string
   const { roomTitle, questions } = useRoom(roomId)
+
+  async function handleCloseRoom() {
+    if (confirm('Tem certeza que deseja fechar esta sala?')) {
+      await database.ref(`rooms/${roomId}`).update({
+        closedAt: new Date().toISOString(),
+      })
+
+      router.replace('/')
+    }
+  }
 
   async function handleDeleteQuestion(question: Question) {
     if (confirm('Tem certeza que deseja excluir esta pergunta?')) {
@@ -33,7 +44,7 @@ function AdminRoomDetailsPage() {
           />
           <div>
             <RoomCode value={roomId} />
-            <Button outline>Fechar Sala</Button>
+            <Button outline onClick={handleCloseRoom}>Fechar Sala</Button>
           </div>
         </div>
       </header>
