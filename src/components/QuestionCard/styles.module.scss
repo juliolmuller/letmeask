@@ -47,6 +47,43 @@
     .actionButtons {
       display: flex;
       gap: 16px;
+
+      button {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+
+        border: 0;
+        background: transparent;
+
+        color: #737380;
+
+        cursor: pointer;
+        transition: filter 200ms;
+
+        &:hover {
+          filter: brightness(0.7);
+        }
+
+        &.activated {
+          color: #835afd;
+
+          svg * {
+            stroke: #835afd;
+          }
+        }
+
+        &.likeButton:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+
+        &.deleteButton:hover {
+          svg * {
+            stroke: #e61313;
+          }
+        }
+      }
     }
   }
 }

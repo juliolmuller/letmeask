@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Icon from '~/components/Icon'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
@@ -77,32 +76,13 @@ function AdminRoomDetailsPage() {
 
         <div className={styles.questionsList}>
           {questions.map((question) => (
-            <QuestionCard key={question.id} {...question}>
-              <button
-                type="button"
-                title={`Marcar como ${question.isAnswered ? 'pendente' : 'respondida'}`}
-                className={question.isAnswered ? styles.checked : ''}
-                onClick={() => handleMarkQuestionAsAnswered(question)}
-              >
-                <Icon name="check" />
-              </button>
-              <button
-                type="button"
-                title={question.isHighlighted ? 'Remover destaque' : 'Destacar pergunta'}
-                className={question.isHighlighted ? styles.checked : ''}
-                onClick={() => handleHighlightQuestion(question)}
-              >
-                <Icon name="answer" />
-              </button>
-              <button
-                type="button"
-                title="Excluir pergunta"
-                className={styles.deleteButton}
-                onClick={() => handleDeleteQuestion(question)}
-              >
-                <Icon name="delete" />
-              </button>
-            </QuestionCard>
+            <QuestionCard
+              key={question.id}
+              question={question}
+              onAnswered={() => handleMarkQuestionAsAnswered(question)}
+              onHighlight={() => handleHighlightQuestion(question)}
+              onDelete={() => handleDeleteQuestion(question)}
+            />
           ))}
         </div>
       </main>

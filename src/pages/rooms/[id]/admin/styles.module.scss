@@ -52,31 +52,6 @@
 
     .questionsList {
       margin-top: 32px;
-
-      button {
-        border: 0;
-        background: transparent;
-
-        color: #737380;
-
-        cursor: pointer;
-
-        &:hover {
-          filter: brightness(0.7);
-        }
-
-        &.deleteButton:hover {
-          svg * {
-            stroke: #f00;
-          }
-        }
-
-        &.checked {
-          svg * {
-            stroke: #835afd;
-          }
-        }
-      }
     }
   }
 }

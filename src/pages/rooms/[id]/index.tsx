@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Icon from '~/components/Icon'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
@@ -112,19 +111,11 @@ function RoomDetailsPage() {
 
         <div className={styles.questionsList}>
           {questions.map((question) => (
-            <QuestionCard key={question.id} {...question}>
-              <button
-                type="button"
-                title="Gostei"
-                className={`${styles.likeButton} ${question.likeId ? styles.liked : ''}`}
-                onClick={() => handleLikeQuestion(question)}
-              >
-                {question.likesCount > 0 && (
-                  <span>{question.likesCount}</span>
-                )}
-                <Icon name="like" />
-              </button>
-            </QuestionCard>
+            <QuestionCard
+              key={question.id}
+              question={question}
+              onLike={() => handleLikeQuestion(question)}
+            />
           ))}
         </div>
       </main>
