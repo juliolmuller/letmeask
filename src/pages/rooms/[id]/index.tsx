@@ -9,8 +9,8 @@ import { useAuth, useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
-import type { Question } from '~/hooks/useRoom'
 import type { FormEvent } from 'react'
+import type { Question } from '~/hooks/useRoom'
 
 function RoomDetailsPage() {
   const roomId = useRouter().query.id as string

@@ -109,6 +109,22 @@
 
     .questionsList {
       margin-top: 32px;
+
+      button {
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+
+        &.deleteButton {
+          color: #737380;
+
+          &:hover {
+            svg, path {
+              stroke: #f00;
+            }
+          }
+        }
+      }
     }
   }
 }

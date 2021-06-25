@@ -1,14 +1,24 @@
 import Image from 'next/image'
+import Icon from '~/components/Icon'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
 import { useRoom } from '~/hooks'
+import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
+
+import type { Question } from '~/hooks/useRoom'
 
 function AdminRoomDetailsPage() {
   const roomId = useRouter().query.id as string
   const { roomTitle, questions } = useRoom(roomId)
+
+  async function handleDeleteQuestion(question: Question) {
+    if (confirm('Tem certeza que deseja excluir esta pergunta?')) {
+      await database.ref(`rooms/${roomId}/questions/${question.id}`).remove()
+    }
+  }
 
   return (
     <div className={styles.roomDetailsPage}>
@@ -38,7 +48,16 @@ function AdminRoomDetailsPage() {
 
         <div className={styles.questionsList}>
           {questions.map((question) => (
-            <QuestionCard key={question.id} {...question} />
+            <QuestionCard key={question.id} {...question}>
+              <button
+                type="button"
+                title="Excluir pergunta"
+                className={styles.deleteButton}
+                onClick={() => handleDeleteQuestion(question)}
+              >
+                <Icon name="delete" />
+              </button>
+            </QuestionCard>
           ))}
         </div>
       </main>
