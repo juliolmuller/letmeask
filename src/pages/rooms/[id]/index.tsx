@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Icon from '~/components/Icon'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
@@ -8,6 +9,7 @@ import { useAuth, useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
+import type { Question } from '~/hooks/useRoom'
 import type { FormEvent } from 'react'
 
 function RoomDetailsPage() {
@@ -41,6 +43,19 @@ function RoomDetailsPage() {
     })
 
     setNewQuestion('')
+  }
+
+  async function handleLikeQuestion(question: Question) {
+    if (!user) {
+      handleAuthenticate()
+      return
+    }
+
+    if (question.likeId) {
+      await database.ref(`rooms/${roomId}/questions/${question.id}/likes/${question.likeId}`).remove()
+    } else {
+      await database.ref(`rooms/${roomId}/questions/${question.id}/likes`).push({ authorId: user.id })
+    }
   }
 
   return (
@@ -97,7 +112,19 @@ function RoomDetailsPage() {
 
         <div className={styles.questionsList}>
           {questions.map((question) => (
-            <QuestionCard key={question.id} {...question} />
+            <QuestionCard key={question.id} {...question}>
+              <button
+                type="button"
+                title="Gostei"
+                className={`${styles.likeButton} ${question.likeId ? styles.liked : ''}`}
+                onClick={() => handleLikeQuestion(question)}
+              >
+                {question.likesCount > 0 && (
+                  <span>{question.likesCount}</span>
+                )}
+                <Icon name="like" />
+              </button>
+            </QuestionCard>
           ))}
         </div>
       </main>

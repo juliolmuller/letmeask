@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import styles from './styles.module.scss'
 
+import type { ReactNode } from 'react'
+
 export type QuestionCardProps = {
+  children?: ReactNode
   content: string
   author: {
     name: string
@@ -9,7 +12,7 @@ export type QuestionCardProps = {
   }
 }
 
-function QuestionCard({ content, author }: QuestionCardProps) {
+function QuestionCard({ children, content, author }: QuestionCardProps) {
   return (
     <div className={styles.questionCard}>
       {content.split('\n').map((paragraph, index) => (
@@ -26,7 +29,7 @@ function QuestionCard({ content, author }: QuestionCardProps) {
           />
           <span>{author.name}</span>
         </div>
-        <div></div>
+        <div>{children}</div>
       </footer>
     </div>
   )
