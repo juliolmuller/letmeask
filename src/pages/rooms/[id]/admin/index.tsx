@@ -3,13 +3,14 @@ import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
 import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
-import { useRoom } from '~/hooks'
+import { useRoom, useQRCode } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from '../styles.module.scss'
 
 import type { Question } from '~/types'
 
 function AdminRoomDetailsPage() {
+  const qrCodeSrc = useQRCode('..')
   const router = useRouter()
   const roomId = router.query.id as string
   const { room, questions } = useRoom(roomId)
@@ -77,15 +78,15 @@ function AdminRoomDetailsPage() {
         <div className={styles.questionsList}>
           {!questions.length ? (
             <div className={styles.emptyList}>
-              <Image
-                src="/img/empty-questions.svg"
-                alt="Nenhuma pergunta ainda"
-                layout="intrinsic"
-                height={150}
-                width={150}
-              />
               <strong>Nenhuma resposta por aqui...</strong>
               <p>Compartilhe o código desta sala e comece a responder às perguntas</p>
+              <Image
+                src={qrCodeSrc}
+                alt="Código QR para a sala"
+                layout="intrinsic"
+                height={240}
+                width={240}
+              />
             </div>
           ) : questions.map((question) => (
             <QuestionCard
