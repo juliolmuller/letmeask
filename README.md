@@ -1,34 +1,99 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 title="Letmeask" align="center">
+  <img alt="Letmeask" src=".github/logo.svg" width="160px">
+</h1>
 
-## Getting Started
+<p align="center">
+  <a href="#trophy-lessons-learned">Lessons Learned</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#rocket-technologies--resources">Technologies</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#hammer-setting-up-the-environment">Environment Setup</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#zap-features-implementations">Features</a>
+</p>
 
-First, run the development server:
+<p align="center">
+  <img src="https://img.shields.io/static/v1?labelColor=000000&color=835AFD&label=created%20at&message=Jun%202021" alt="Creation Date" />
+
+  <img src="https://img.shields.io/github/last-commit/juliolmuller/letmeask?label=updated%20at&labelColor=000000&color=835AFD" alt="Update Date" />
+
+  <img src="https://img.shields.io/static/v1?labelColor=000000&color=835AFD&label=PRs&message=welcome" alt="Pull Requests Welcome" />
+
+  <img src="https://img.shields.io/github/license/juliolmuller/letmeask?labelColor=000000&color=835AFD" alt="Project License" />
+</p>
+
+<p align="center">
+  <img src=".github/app-overview.svg" alt="Application Overview" width="100%">
+</p>
+
+Application developed during sixth edition of [Next Level Week](https://nextlevelweek.com/), delivered by [RocketSeat](https://rocketseat.com.br/). The objective was to build a frontend React application integrating [Firebase](https://firebase.google.com/) authentication and realtime database to connect content creators and their audience on a platform to exchange questions and answers.The idea was implemented using **Create React App**, but I've already upgrade it to use **Next.js** framework.
+
+[Check out the application running!](https://jlm-letmeask.vercel.app/)
+
+## :trophy: Lessons Learned
+
+- Setting up *Firebase*;
+- Adding *Firebase* authentication to a frontend application;
+- Add event listeners to fetch realtime data from *Firebase*;
+
+## :rocket: Technologies & Resources
+
+**Frontend:**
+- [React.js](https://reactjs.org)
+- [Next.js](https://nextjs.org/)
+
+**Frontend/Backend:**
+- [Next.js](https://nextjs.org/)
+- [Firebase](https://firebase.google.com/)
+
+**Development:**
+- [Visual Studio Code](https://code.visualstudio.com/)
+- Node.js routines with NPM
+- TypeScript
+- ESlint
+
+## :hammer: Setting up the Environment
+
+Make sure to have **Node.js 14+** and **NPM 7** (or **Yarn 1.22**) installed in your machine and its `node` and `npm`/`yarn` shortcuts available through the command line, then use the following command to install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
+# using NPM
+$ npm install
+
+# using Yarn
+$ yarn
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This action should also create a `.env` file in the root of the project. If it was not created, use `.env.example` as reference to create it. In this file, you should add all the metadata to connect to a **Firebase** app ([create one here](https://console.firebase.google.com/))
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+With the environment variables set, all the other routines can be run:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+$ npm run dev     # run Next development server in port 8080
+$ npm run build   # build Next project tp production
+$ npm run prod    # run Next server on built files (in port 8080)
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+If using **Yarn**, just replace `npm run` by `yarn` on the above commands
 
-## Learn More
+## :zap: Features Implementations
 
-To learn more about Next.js, take a look at the following resources:
+The main idea of the project was developed during the week of the event and the result is the one found in [release v1.0](https://github.com/juliolmuller/letmeask/releases/tag/v1.0). Afterwards, any incoming commits are intended to be incremental updates to improve the application, as proposed at the end of the event.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Besides, base project layout & design is available at **[Figma](https://www.figma.com/file/ATam5KujQTNPhTq87XCXnF/Letmeask-1.0)**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [x] ~~Create project using `create-react-app`;~~
+- [x] Create project using `create-next-app`;
+- [x] And support to TypeScript;
+- [x] And support to SASS;
+- [x] Define custom fonts based on *Figma* mock-ups;
+- [x] Create and configure a *FIrebase* app;
+- [x] Enable authentication with Google account;
+- [x] Configure *firebase*  service in ~~*React*~~*Next.js* project;
+- [x] Create *React Context* for authentication;
+- [x] Work with *Firebase Realtime Database*;
+- [ ] Make application responsive;
+- [ ] Add animations and transitions;
+- [ ] Add a dark theme;
+- [ ] Convert application into a PWA;
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Also checkout the project developed in [NLW #2](https://github.com/juliolmuller/proffy), [NLW #3](https://github.com/juliolmuller/happy), [NLW #4](https://github.com/juliolmuller/move.it) and [NLW #5](https://github.com/juliolmuller/podcastr).
