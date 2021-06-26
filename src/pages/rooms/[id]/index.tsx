@@ -12,9 +12,10 @@ import type { FormEvent } from 'react'
 import type { Question } from '~/types'
 
 function RoomDetailsPage() {
-  const roomId = useRouter().query.id as string
+  const router = useRouter()
+  const roomId = router.query.id as string
   const { user, signInWithGoogle } = useAuth()
-  const { roomTitle, questions } = useRoom(roomId)
+  const { room, questions } = useRoom(roomId)
   const [newQuestion, setNewQuestion] = useState('')
   const canSubmitQuestion = Boolean(user && newQuestion.trim())
 
@@ -67,13 +68,21 @@ function RoomDetailsPage() {
             height={45}
             width={135}
           />
-          <RoomCode value={roomId} />
+          <div>
+            <RoomCode value={roomId} />
+            {room && user?.id === room?.authorId && (
+              <Button
+                outline
+                onClick={() => router.push(`./${roomId}/admin`)}
+              >Visão de Administrador</Button>
+            )}
+          </div>
         </div>
       </header>
 
       <main>
         <div className={styles.title}>
-          <h1>{roomTitle}</h1>
+          <h1>{room?.title}</h1>
           {questions.length > 0 && (
             <span>{questions.length} pergunta{questions.length > 1 && 's'}</span>
           )}

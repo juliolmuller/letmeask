@@ -12,7 +12,7 @@ import type { Question } from '~/types'
 function AdminRoomDetailsPage() {
   const router = useRouter()
   const roomId = router.query.id as string
-  const { roomTitle, questions } = useRoom(roomId)
+  const { room, questions } = useRoom(roomId)
 
   async function handleCloseRoom() {
     if (confirm('Tem certeza que deseja fechar esta sala?')) {
@@ -68,7 +68,7 @@ function AdminRoomDetailsPage() {
 
       <main>
         <div className={styles.title}>
-          <h1>{roomTitle}</h1>
+          <h1>{room?.title}</h1>
           {questions.length > 0 && (
             <span>{questions.length} pergunta{questions.length > 1 && 's'}</span>
           )}

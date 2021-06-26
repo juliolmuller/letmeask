@@ -1,4 +1,11 @@
 
+export type Room = {
+  title: string
+  authorId: string
+  createdAt: string // parsable to Date
+  closedAt?: string // parsable to Date
+}
+
 export type Question = {
   id: string
   content: string

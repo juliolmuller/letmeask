@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '~/contexts'
 import { database } from '~/services/firebase'
 
-import type { Question } from '~/types'
+import type { Room, Question } from '~/types'
 
 export type FirebaseQuestions = Record<string, {
   id: string
@@ -20,17 +20,15 @@ export type FirebaseQuestions = Record<string, {
 
 function useRoom(roomId: string) {
   const { user } = useAuth()
-  const [roomTitle, setRoomTitle] = useState('Sala')
+  const [room, setRoom] = useState<Room>()
   const [questions, setQuestions] = useState<Question[]>([])
 
   useEffect(() => {
     const roomRef = database.ref(`/rooms/${roomId}`)
 
     roomRef.on('value', (event) => {
-      const room = event.val()
-
-      if (room) {
-        const rawQuestions = room.questions as FirebaseQuestions
+      if (event.val()) {
+        const rawQuestions = event.val().questions as FirebaseQuestions
         const parsedQuestions = Object.entries(rawQuestions ?? {}).map(([questionId, value]) => ({
           ...value,
           id: questionId,
@@ -38,7 +36,7 @@ function useRoom(roomId: string) {
           likeId: Object.entries(value.likes ?? {}).find(([, { authorId }]) => authorId === user?.id)?.[0],
         }))
 
-        setRoomTitle(room.title)
+        setRoom(event.val() as Room)
         setQuestions(parsedQuestions)
       }
     })
@@ -47,7 +45,7 @@ function useRoom(roomId: string) {
   }, [roomId, user?.id])
 
   return {
-    roomTitle,
+    room,
     questions,
   }
 }
