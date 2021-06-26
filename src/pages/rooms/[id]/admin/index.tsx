@@ -75,7 +75,19 @@ function AdminRoomDetailsPage() {
         </div>
 
         <div className={styles.questionsList}>
-          {questions.map((question) => (
+          {!questions.length ? (
+            <div className={styles.emptyList}>
+              <Image
+                src="/img/empty-questions.svg"
+                alt="Nenhuma pergunta ainda"
+                layout="intrinsic"
+                height={150}
+                width={150}
+              />
+              <strong>Nenhuma resposta por aqui...</strong>
+              <p>Compartilhe o código desta sala e comece a responder às perguntas</p>
+            </div>
+          ) : questions.map((question) => (
             <QuestionCard
               key={question.id}
               question={question}

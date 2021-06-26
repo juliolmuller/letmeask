@@ -16,7 +16,6 @@ function RoomDetailsPage() {
   const { user, signInWithGoogle } = useAuth()
   const { roomTitle, questions } = useRoom(roomId)
   const [newQuestion, setNewQuestion] = useState('')
-
   const canSubmitQuestion = Boolean(user && newQuestion.trim())
 
   async function handleAuthenticate() {
@@ -110,7 +109,19 @@ function RoomDetailsPage() {
         </form>
 
         <div className={styles.questionsList}>
-          {questions.map((question) => (
+          {!questions.length ? (
+            <div className={styles.emptyList}>
+              <Image
+                src="/img/empty-questions.svg"
+                alt="Nenhuma pergunta ainda"
+                layout="intrinsic"
+                height={150}
+                width={150}
+              />
+              <strong>Nenhuma resposta por aqui...</strong>
+              <p>Seja a primeira pessoa a enviar uma pergunta</p>
+            </div>
+          ) : questions.map((question) => (
             <QuestionCard
               key={question.id}
               question={question}
