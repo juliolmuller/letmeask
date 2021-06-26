@@ -11,6 +11,15 @@
 
       max-width: 1120px;
       margin: 0 auto;
+
+      > div {
+        display: flex;
+        gap: 16px;
+
+        button {
+          height: 40px;
+        }
+      }
     }
   }
 

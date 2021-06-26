@@ -5,7 +5,7 @@ import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
 import { useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
-import styles from './styles.module.scss'
+import styles from '../styles.module.scss'
 
 import type { Question } from '~/types'
 
