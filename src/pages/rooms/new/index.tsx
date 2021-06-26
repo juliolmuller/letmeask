@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from '~/components/Button'
@@ -29,6 +30,10 @@ function NewRoomPage() {
 
   return (
     <div className={styles.newRoomPage}>
+      <Head>
+        <title>Letmeask :: Criar Nova Sala</title>
+      </Head>
+
       <aside>
         <Image
           src="/img/illustration.svg"

@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Image from 'next/image'
 import Button from '~/components/Button'
 import { useRouter } from 'next/router'
@@ -36,6 +37,10 @@ function SignInPage() {
 
   return (
     <div className={styles.signInPage}>
+      <Head>
+        <title>Letmeask :: Home</title>
+      </Head>
+
       <aside>
         <Image
           src="/img/illustration.svg"

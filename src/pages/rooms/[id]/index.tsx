@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import Image from 'next/image'
 import Button from '~/components/Button'
 import RoomCode from '~/components/RoomCode'
@@ -59,6 +60,10 @@ function RoomDetailsPage() {
 
   return (
     <div className={styles.roomDetailsPage}>
+      <Head>
+        <title>Letmeask :: {room?.title}</title>
+      </Head>
+
       <header>
         <div className={styles.content}>
           <Image
