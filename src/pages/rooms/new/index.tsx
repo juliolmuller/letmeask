@@ -24,7 +24,7 @@ function NewRoomPage() {
       createdAt: new Date().toISOString(),
     })
 
-    router.push(`/rooms/${newRoom.key}`)
+    router.push(`/rooms/${newRoom.key}/admin`)
   }
 
   return (
