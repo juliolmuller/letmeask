@@ -1,5 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react'
-import type { Question } from './models'
+import type { Question } from './common'
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   outline?: boolean
@@ -23,7 +23,7 @@ export type LikeButtonProps = {
   isActive: boolean
   isDisabled: boolean
   likesCount: number
-  onClick: () => void
+  onClick?: () => void
 }
 
 export type QuestionCardProps = {
