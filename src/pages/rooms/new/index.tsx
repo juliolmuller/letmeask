@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Button from '~/components/Button'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { useAuth } from '~/contexts'
+import { useAuth } from '~/hooks'
 import { database } from '~/services/firebase'
 import styles from './styles.module.scss'
 
