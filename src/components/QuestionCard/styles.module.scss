@@ -78,6 +78,10 @@
           cursor: not-allowed;
         }
 
+        &.likeButton.readonly {
+          cursor: unset;
+        }
+
         &.deleteButton:hover {
           svg * {
             stroke: #e61313;

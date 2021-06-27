@@ -33,14 +33,12 @@ function QuestionCard({ question, onLike, onDelete, onAnswered, onHighlight }: Q
         </div>
 
         <div className={styles.actionButtons}>
-          {onLike && (
-            <LikeButton
-              isActive={Boolean(question.likeId)}
-              isDisabled={question.isAnswered}
-              likesCount={question.likesCount}
-              onClick={onLike}
-            />
-          )}
+          <LikeButton
+            isActive={Boolean(question.likeId)}
+            isDisabled={question.isAnswered}
+            likesCount={question.likesCount}
+            onClick={onLike}
+          />
           {onAnswered && (
             <AnsweredButton
               isActive={question.isAnswered}

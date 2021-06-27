@@ -2,16 +2,22 @@ import styles from '../styles.module.scss'
 
 import type { LikeButtonProps } from '~/types'
 
-function LikeButton({ isActive, isDisabled, likesCount, onClick }: LikeButtonProps) {
+function LikeButton({
+  isActive,
+  isDisabled,
+  likesCount,
+  onClick,
+}: LikeButtonProps) {
   return (
     <button
       type="button"
       title="Gostei"
       className={`
         ${styles.likeButton}
-        ${isActive ? styles.activated : ''}
+        ${onClick ? '' : styles.readonly}
+        ${onClick && isActive ? styles.activated : ''}
       `}
-      onClick={onClick}
+      onClick={() => onClick?.()}
       disabled={isDisabled}
     >
       {likesCount > 0 && (
