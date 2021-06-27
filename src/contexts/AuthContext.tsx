@@ -1,22 +1,7 @@
 import { createContext, useEffect, useState } from 'react'
 import firebase, { auth } from '~/services/firebase'
 
-import type { ReactNode } from 'react'
-
-export type User = {
-  id: string
-  name: string
-  avatar: string
-}
-
-export type AuthContextProps = {
-  user: User | undefined
-  signInWithGoogle: () => Promise<boolean>
-}
-
-export type AuthProviderProps = {
-  children: ReactNode
-}
+import type { AuthContextProps, AuthProviderProps, User } from '~/types'
 
 export const AuthContext = createContext({} as AuthContextProps)
 

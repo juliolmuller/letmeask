@@ -1,9 +1,6 @@
 import styles from '../styles.module.scss'
 
-export type HighlightButtonProps = {
-  isActive: boolean
-  onClick: () => void
-}
+import type { HighlightButtonProps } from '~/types'
 
 function HighlightButton({ isActive, onClick }: HighlightButtonProps) {
   return (

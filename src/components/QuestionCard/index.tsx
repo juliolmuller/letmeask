@@ -5,15 +5,7 @@ import HighlightButton from './buttons/HighlightButton'
 import LikeButton from './buttons/LikeButton'
 import styles from './styles.module.scss'
 
-import type { Question } from '~/types'
-
-export type QuestionCardProps = {
-  question: Question
-  onLike?: () => void
-  onDelete?: () => void
-  onAnswered?: () => void
-  onHighlight?: () => void
-}
+import type { QuestionCardProps } from '~/types'
 
 function QuestionCard({ question, onLike, onDelete, onAnswered, onHighlight }: QuestionCardProps) {
   return (

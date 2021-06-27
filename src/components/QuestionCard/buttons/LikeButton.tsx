@@ -1,11 +1,6 @@
 import styles from '../styles.module.scss'
 
-export type LikeButtonProps = {
-  isActive: boolean
-  isDisabled: boolean
-  likesCount: number
-  onClick: () => void
-}
+import type { LikeButtonProps } from '~/types'
 
 function LikeButton({ isActive, isDisabled, likesCount, onClick }: LikeButtonProps) {
   return (

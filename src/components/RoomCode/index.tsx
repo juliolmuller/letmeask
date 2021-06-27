@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import styles from './styles.module.scss'
 
-export type ROomCodeProps = {
-  value: string
-}
+import type { ROomCodeProps } from '~/types'
 
 function RoomCode({ value }: ROomCodeProps) {
   function handleCopyToClipboard() {

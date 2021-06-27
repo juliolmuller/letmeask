@@ -1,22 +1,8 @@
 import { useEffect, useState } from 'react'
-import { useAuth } from '~/contexts'
+import useAuth from './useAuth'
 import { database } from '~/services/firebase'
 
-import type { Room, Question } from '~/types'
-
-export type FirebaseQuestions = Record<string, {
-  id: string
-  content: string
-  author: {
-    name: string
-    avatar: string
-  }
-  isHighlighted: boolean
-  isAnswered: boolean
-  likes: Record<string, {
-    authorId: string
-  }>
-}>
+import type { FirebaseQuestions, Question, Room } from '~/types'
 
 function useRoom(roomId: string) {
   const { user } = useAuth()
