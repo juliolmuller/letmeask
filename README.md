@@ -89,6 +89,7 @@ Besides, base project layout & design is available at **[Figma](https://www.figm
 - [x] Configure *firebase*  service in ~~*React*~~*Next.js* project;
 - [x] Create *React Context* for authentication;
 - [x] Work with *Firebase Realtime Database*;
+- [ ] Add loading placeholder animations;
 - [ ] Make application responsive;
 - [ ] Add animations and transitions;
 - [ ] Add a dark theme;
