@@ -113,6 +113,7 @@ function RoomDetailsPage() {
               </div>
             ) : (
               <span>Para enviar uma pergunta,
+                {/* eslint-disable-next-line react/jsx-child-element-spacing */}
                 <button type="button" onClick={handleAuthenticate}>faça seu login</button>.
               </span>
             )}

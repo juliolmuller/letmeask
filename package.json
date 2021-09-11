@@ -13,7 +13,7 @@
     "build": "next build",
     "prod": "next start",
     "production": "npm run prod",
-    "lint": "next lint"
+    "lint": "next lint --fix"
   },
   "dependencies": {
     "firebase": "^9.0.2",
