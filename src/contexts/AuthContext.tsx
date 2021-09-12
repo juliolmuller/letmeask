@@ -38,7 +38,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setUserFromRaw(response.user)
 
       return true
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'auth/popup-closed-by-user') {
         return false
       }
