@@ -1,7 +1,8 @@
 {
   "name": "letmeask",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
+  "license": "MIT",
   "authors": [
     "RocketSeat",
     "Julio L. Muller"
@@ -16,18 +17,18 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "firebase": "^9.0.2",
-    "next": "^11.1.2",
+    "firebase": "^9.6.7",
+    "next": "^12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@types/node": "^14.17.15",
-    "@types/react": "^17.0.20",
+    "@types/node": "^16.11.25",
+    "@types/react": "^17.0.39",
     "eslint": "^7.32.0",
-    "eslint-config-lacussoft": "^2.0.3",
-    "eslint-config-next": "^11.1.2",
-    "sass": "^1.39.2",
-    "typescript": "^4.4.3"
+    "eslint-config-lacussoft": "^2.3.0",
+    "eslint-config-next": "^12.1.0",
+    "sass": "^1.49.8",
+    "typescript": "^4.5.5"
   }
 }
