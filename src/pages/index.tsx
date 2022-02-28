@@ -1,13 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from '~/components/Button'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import type { FormEvent } from 'react'
+
+import Button from '~/components/Button'
 import { useAuth } from '~/hooks'
 import { database } from '~/services/firebase'
+
 import styles from './styles.module.scss'
 
-import type { FormEvent } from 'react'
 
 function SignInPage() {
   const router = useRouter()

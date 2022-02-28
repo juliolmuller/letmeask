@@ -1,6 +1,7 @@
+import type { AnsweredButtonProps } from '~/types'
+
 import styles from '../styles.module.scss'
 
-import type { AnsweredButtonProps } from '~/types'
 
 function AnsweredButton({ isActive, onClick }: AnsweredButtonProps) {
   return (

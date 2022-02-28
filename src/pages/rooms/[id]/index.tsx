@@ -1,16 +1,18 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import Button from '~/components/Button'
-import RoomCode from '~/components/RoomCode'
-import QuestionCard from '~/components/QuestionCard'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import type { FormEvent } from 'react'
+
+import Button from '~/components/Button'
+import QuestionCard from '~/components/QuestionCard'
+import RoomCode from '~/components/RoomCode'
 import { useAuth, useRoom } from '~/hooks'
 import { database } from '~/services/firebase'
+import type { Question } from '~/types'
+
 import styles from './styles.module.scss'
 
-import type { FormEvent } from 'react'
-import type { Question } from '~/types'
 
 function RoomDetailsPage() {
   const router = useRouter()

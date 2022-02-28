@@ -1,4 +1,5 @@
 import NextApp from 'next/app'
+
 import { AuthProvider } from '~/contexts'
 import '~/global-styles.scss'
 

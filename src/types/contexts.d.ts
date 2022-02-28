@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+
 import type { User } from '~/types'
 
 export type AuthContextProps = {

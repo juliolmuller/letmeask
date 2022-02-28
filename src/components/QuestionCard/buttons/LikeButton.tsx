@@ -1,6 +1,7 @@
+import type { LikeButtonProps } from '~/types'
+
 import styles from '../styles.module.scss'
 
-import type { LikeButtonProps } from '~/types'
 
 function LikeButton({
   isActive,
