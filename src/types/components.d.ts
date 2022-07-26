@@ -1,4 +1,5 @@
 import type { ButtonHTMLAttributes } from 'react'
+
 import type { Question } from './common'
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
