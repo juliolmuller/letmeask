@@ -1,6 +1,6 @@
 {
   "name": "letmeask",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "license": "MIT",
   "authors": [
@@ -19,24 +19,24 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "firebase": "^9.9.1",
-    "next": "^12.2.4",
+    "firebase": "^9.15.0",
+    "next": "^13.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.3",
-    "@commitlint/config-conventional": "^17.0.3",
-    "@types/node": "^18.6.1",
-    "@types/react": "^18.0.15",
-    "commitizen": "^4.2.5",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.26",
+    "commitizen": "^4.2.6",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-config-lacussoft": "^2.3.0",
-    "eslint-config-next": "^12.2.3",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "sass": "^1.54.0",
-    "typescript": "^4.7.4"
+    "eslint-config-next": "^13.1.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0",
+    "sass": "^1.57.1",
+    "typescript": "^4.9.4"
   }
 }
