@@ -1,5 +1,5 @@
 <h1 title="Letmeask" align="center">
-  <img alt="Letmeask" src=".github/logo.svg" width="160px">
+  <img alt="Letmeask" src="https://user-images.githubusercontent.com/44725817/212797264-e900d550-9681-4987-92a3-62a4972479ad.png" width="160px">
 </h1>
 
 <p align="center">
@@ -20,7 +20,7 @@
 </p>
 
 <p align="center">
-  <img src=".github/app-overview.svg" alt="Application Overview" width="100%">
+  <img src="https://user-images.githubusercontent.com/44725817/212797156-6bbec597-df7d-470b-bba3-0df62c94690a.png" alt="Application Overview" width="100%">
 </p>
 
 Application developed during sixth edition of [Next Level Week](https://nextlevelweek.com/), delivered by [RocketSeat](https://rocketseat.com.br/). The objective was to build a frontend React application integrating [Firebase](https://firebase.google.com/) authentication and realtime database to connect content creators and their audience on a platform to exchange questions and answers.The idea was implemented using **Create React App**, but I've already upgrade it to use **Next.js** framework.
