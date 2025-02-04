@@ -1,12 +1,13 @@
 {
   "name": "letmeask",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "private": true,
   "license": "MIT",
   "authors": [
     "RocketSeat",
     "Julio L. Muller"
   ],
+  "homepage": "https://jlm-letmeask.vercel.app/",
   "scripts": {
     "postinstall": "node -e \"require('fs').existsSync('.env') || require('fs').copyFileSync('.env.example', '.env')\"",
     "prepare": "husky install",
