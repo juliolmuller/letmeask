@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import type { QuestionCardProps } from '~/types'
 
@@ -7,7 +7,6 @@ import DeleteButton from './buttons/DeleteButton'
 import HighlightButton from './buttons/HighlightButton'
 import LikeButton from './buttons/LikeButton'
 import styles from './styles.module.scss'
-
 
 function QuestionCard({ question, onLike, onDelete, onAnswered, onHighlight }: QuestionCardProps) {
   return (

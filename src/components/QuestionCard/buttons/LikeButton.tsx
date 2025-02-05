@@ -2,7 +2,6 @@ import type { LikeButtonProps } from '~/types'
 
 import styles from '../styles.module.scss'
 
-
 function LikeButton({
   isActive,
   isDisabled,

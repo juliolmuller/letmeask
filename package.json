@@ -1,17 +1,18 @@
 {
   "name": "letmeask",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "private": true,
   "license": "MIT",
   "authors": [
     "RocketSeat",
     "Julio L. Muller"
   ],
+  "homepage": "https://jlm-letmeask.vercel.app/",
   "scripts": {
     "postinstall": "node -e \"require('fs').existsSync('.env') || require('fs').copyFileSync('.env.example', '.env')\"",
-    "prepare": "husky install",
+    "prepare": "husky",
     "commit": "git-cz",
-    "dev": "next dev --port 8080",
+    "dev": "next dev --port 30303",
     "development": "npm run dev",
     "build": "next build",
     "prod": "next start",
@@ -19,24 +20,24 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "firebase": "^9.15.0",
-    "next": "^13.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "firebase": "^11.2.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@types/node": "^18.11.18",
-    "@types/react": "^18.0.26",
-    "commitizen": "^4.2.6",
+    "@commitlint/cli": "^19.7.1",
+    "@commitlint/config-conventional": "^19.7.1",
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "commitizen": "^4.3.1",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^7.32.0",
-    "eslint-config-lacussoft": "^2.3.0",
-    "eslint-config-next": "^13.1.2",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "sass": "^1.57.1",
-    "typescript": "^4.9.4"
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^15.1.6",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "sass": "^1.83.4",
+    "typescript": "^5.7.3"
   }
 }

@@ -1,9 +1,8 @@
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 
 import type { ROomCodeProps } from '~/types'
 
 import styles from './styles.module.scss'
-
 
 function RoomCode({ value }: ROomCodeProps) {
   function handleCopyToClipboard() {
