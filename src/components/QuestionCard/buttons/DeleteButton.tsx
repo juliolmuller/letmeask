@@ -2,7 +2,6 @@ import type { DeleteButtonProps } from '~/types'
 
 import styles from '../styles.module.scss'
 
-
 function DeleteButton({ onClick }: DeleteButtonProps) {
   return (
     <button

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -10,7 +10,6 @@ import { useAuth } from '~/hooks'
 import { database } from '~/services/firebase'
 
 import styles from './styles.module.scss'
-
 
 function NewRoomPage() {
   const router = useRouter()
@@ -31,11 +30,10 @@ function NewRoomPage() {
   }
 
   return (
-    <div className={styles.newRoomPage}>
+    (<div className={styles.newRoomPage}>
       <Head>
         <title>Letmeask :: Criar Nova Sala</title>
       </Head>
-
       <aside>
         <Image
           src="/img/illustration.svg"
@@ -48,7 +46,6 @@ function NewRoomPage() {
         <strong>Crie salas de Q&amp;A ao vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
-
       <main>
         <div className={styles.mainWrapper}>
           <Image
@@ -73,11 +70,11 @@ function NewRoomPage() {
           </form>
 
           <p className={styles.navLink}>
-            Quer entrar em uma sala existente? <Link href="/"><a>Clique aqui</a></Link>
+            Quer entrar em uma sala existente? <Link href="/">Clique aqui</Link>
           </p>
         </div>
       </main>
-    </div>
+    </div>)
   )
 }
 

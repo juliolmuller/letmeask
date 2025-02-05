@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
@@ -10,14 +10,13 @@ import { database } from '~/services/firebase'
 
 import styles from './styles.module.scss'
 
-
 function SignInPage() {
   const router = useRouter()
   const { signInWithGoogle } = useAuth()
   const [roomKey, setRoomKey] = useState('')
 
   async function handleAuthenticate() {
-    await signInWithGoogle() && router.push('/rooms/new')
+    (await signInWithGoogle()) && router.push('/rooms/new')
   }
 
   async function handleJoinRoom(event: FormEvent) {
@@ -51,6 +50,7 @@ function SignInPage() {
           objectFit="contain"
           height={560}
           width={320}
+          priority
         />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo real</p>

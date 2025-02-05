@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import Image from 'next/legacy/image'
 import { useRouter } from 'next/router'
 
 import Button from '~/components/Button'
@@ -10,7 +10,6 @@ import { database } from '~/services/firebase'
 import type { Question } from '~/types'
 
 import styles from '../styles.module.scss'
-
 
 function AdminRoomDetailsPage() {
   const qrCodeSrc = useQRCode('..')
