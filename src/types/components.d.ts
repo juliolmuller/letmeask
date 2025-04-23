@@ -35,6 +35,6 @@ export interface QuestionCardProps {
   question: Question;
 }
 
-export interface ROomCodeProps {
+export interface RoomCodeProps {
   value: string;
 }

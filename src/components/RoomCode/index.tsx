@@ -1,11 +1,11 @@
 import Image from 'next/legacy/image';
 import { type ReactNode } from 'react';
 
-import type { ROomCodeProps } from '~/types';
+import type { RoomCodeProps } from '~/types';
 
 import styles from './styles.module.scss';
 
-function RoomCode({ value }: ROomCodeProps): ReactNode {
+function RoomCode({ value }: RoomCodeProps): ReactNode {
   function handleCopyToClipboard(): void {
     navigator.clipboard.writeText(value);
   }
