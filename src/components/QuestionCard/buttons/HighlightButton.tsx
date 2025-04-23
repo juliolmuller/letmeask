@@ -1,8 +1,10 @@
-import type { HighlightButtonProps } from '~/types'
+import { type ReactNode } from 'react';
 
-import styles from '../styles.module.scss'
+import type { HighlightButtonProps } from '~/types';
 
-function HighlightButton({ isActive, onClick }: HighlightButtonProps) {
+import styles from '../styles.module.scss';
+
+function HighlightButton({ isActive, onClick }: HighlightButtonProps): ReactNode {
   return (
     <button
       type="button"
@@ -28,7 +30,7 @@ function HighlightButton({ isActive, onClick }: HighlightButtonProps) {
         />
       </svg>
     </button>
-  )
+  );
 }
 
-export default HighlightButton
+export default HighlightButton;

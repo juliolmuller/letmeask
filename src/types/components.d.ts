@@ -1,40 +1,40 @@
-import type { ButtonHTMLAttributes } from 'react'
+import type { ButtonHTMLAttributes } from 'react';
 
-import type { Question } from './common'
+import type { Question } from './common';
 
-export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  outline?: boolean
+export type ButtonProps = {
+  outline?: boolean;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
+
+export interface AnsweredButtonProps {
+  isActive: boolean;
+  onClick: () => void;
 }
 
-export type AnsweredButtonProps = {
-  isActive: boolean
-  onClick: () => void
+export interface DeleteButtonProps {
+  onClick: () => void;
 }
 
-export type DeleteButtonProps = {
-  onClick: () => void
+export interface HighlightButtonProps {
+  isActive: boolean;
+  onClick: () => void;
 }
 
-export type HighlightButtonProps = {
-  isActive: boolean
-  onClick: () => void
+export interface LikeButtonProps {
+  isActive: boolean;
+  isDisabled: boolean;
+  likesCount: number;
+  onClick?: () => void;
 }
 
-export type LikeButtonProps = {
-  isActive: boolean
-  isDisabled: boolean
-  likesCount: number
-  onClick?: () => void
+export interface QuestionCardProps {
+  onAnswered?: () => void;
+  onDelete?: () => void;
+  onHighlight?: () => void;
+  onLike?: () => void;
+  question: Question;
 }
 
-export type QuestionCardProps = {
-  question: Question
-  onLike?: () => void
-  onDelete?: () => void
-  onAnswered?: () => void
-  onHighlight?: () => void
-}
-
-export type ROomCodeProps = {
-  value: string
+export interface ROomCodeProps {
+  value: string;
 }

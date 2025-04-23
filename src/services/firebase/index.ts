@@ -1,8 +1,8 @@
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
-import 'firebase/compat/database'
-import 'firebase/compat/performance'
-import 'firebase/compat/analytics'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/database';
+import 'firebase/compat/performance';
+import 'firebase/compat/analytics';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -13,23 +13,23 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
-}
+};
 
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig)
+  firebase.initializeApp(firebaseConfig);
 
   if (typeof window !== 'undefined') {
-    firebase.performance()
-    firebase.analytics()
+    firebase.performance();
+    firebase.analytics();
   }
 
   if (process.env.NODE_ENV === 'development') {
-    console.info('Firebase initialized')
+    console.info('Firebase initialized');
   }
 }
 
-export const auth = firebase.auth()
-export const database = firebase.database()
+export const auth = firebase.auth();
+export const database = firebase.database();
 
-export { firebase }
-export default firebase
+export { firebase };
+export default firebase;

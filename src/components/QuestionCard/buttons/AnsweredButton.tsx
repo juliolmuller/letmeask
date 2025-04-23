@@ -1,8 +1,10 @@
-import type { AnsweredButtonProps } from '~/types'
+import { type ReactNode } from 'react';
 
-import styles from '../styles.module.scss'
+import type { AnsweredButtonProps } from '~/types';
 
-function AnsweredButton({ isActive, onClick }: AnsweredButtonProps) {
+import styles from '../styles.module.scss';
+
+function AnsweredButton({ isActive, onClick }: AnsweredButtonProps): ReactNode {
   return (
     <button
       type="button"
@@ -35,7 +37,7 @@ function AnsweredButton({ isActive, onClick }: AnsweredButtonProps) {
         />
       </svg>
     </button>
-  )
+  );
 }
 
-export default AnsweredButton
+export default AnsweredButton;

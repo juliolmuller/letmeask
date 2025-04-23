@@ -1,12 +1,12 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from 'react';
 
-import type { User } from '~/types'
+import type { User } from '~/types';
 
-export type AuthContextProps = {
-  user: User | undefined
-  signInWithGoogle: () => Promise<boolean>
+export interface AuthContextProps {
+  signInWithGoogle: () => Promise<boolean>;
+  user: undefined | User;
 }
 
-export type AuthProviderProps = {
-  children: ReactNode
+export interface AuthProviderProps {
+  children: ReactNode;
 }

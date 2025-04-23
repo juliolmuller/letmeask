@@ -1,35 +1,35 @@
-import Head from 'next/head'
-import Image from 'next/legacy/image'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import type { FormEvent } from 'react'
+import Head from 'next/head';
+import Image from 'next/legacy/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import type { FormEvent, ReactNode } from 'react';
 
-import Button from '~/components/Button'
-import QuestionCard from '~/components/QuestionCard'
-import RoomCode from '~/components/RoomCode'
-import { useAuth, useRoom } from '~/hooks'
-import { database } from '~/services/firebase'
-import type { Question } from '~/types'
+import Button from '~/components/Button';
+import QuestionCard from '~/components/QuestionCard';
+import RoomCode from '~/components/RoomCode';
+import { useAuth, useRoom } from '~/hooks';
+import { database } from '~/services/firebase';
+import type { Question } from '~/types';
 
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
-function RoomDetailsPage() {
-  const router = useRouter()
-  const roomId = router.query.id as string
-  const { user, signInWithGoogle } = useAuth()
-  const { room, questions } = useRoom(roomId)
-  const [newQuestion, setNewQuestion] = useState('')
-  const canSubmitQuestion = Boolean(user && newQuestion.trim())
+function RoomDetailsPage(): ReactNode {
+  const router = useRouter();
+  const roomId = router.query.id as string;
+  const { user, signInWithGoogle } = useAuth();
+  const { room, questions } = useRoom(roomId);
+  const [newQuestion, setNewQuestion] = useState('');
+  const canSubmitQuestion = Boolean(user && newQuestion.trim());
 
-  async function handleAuthenticate() {
-    await signInWithGoogle()
+  async function handleAuthenticate(): Promise<void> {
+    await signInWithGoogle();
   }
 
-  async function handleCreateQuestion(event: FormEvent) {
-    event.preventDefault()
+  async function handleCreateQuestion(event: FormEvent): Promise<void> {
+    event.preventDefault();
 
     if (!user) {
-      throw new Error('Você precisa se registrar para enviar uma pergunta.')
+      throw new Error('Você precisa se registrar para enviar uma pergunta.');
     }
 
     await database.ref(`/rooms/${roomId}/questions`).push({
@@ -41,21 +41,25 @@ function RoomDetailsPage() {
       isAnswered: false,
       isHighlighted: false,
       createdAt: new Date().toISOString(),
-    })
+    });
 
-    setNewQuestion('')
+    setNewQuestion('');
   }
 
-  async function handleLikeQuestion(question: Question) {
+  async function handleLikeQuestion(question: Question): Promise<void> {
     if (!user) {
-      handleAuthenticate()
-      return
+      handleAuthenticate();
+      return;
     }
 
     if (question.likeId) {
-      await database.ref(`rooms/${roomId}/questions/${question.id}/likes/${question.likeId}`).remove()
+      await database
+        .ref(`rooms/${roomId}/questions/${question.id}/likes/${question.likeId}`)
+        .remove();
     } else {
-      await database.ref(`rooms/${roomId}/questions/${question.id}/likes`).push({ authorId: user.id })
+      await database
+        .ref(`rooms/${roomId}/questions/${question.id}/likes`)
+        .push({ authorId: user.id });
     }
   }
 
@@ -67,20 +71,13 @@ function RoomDetailsPage() {
 
       <header>
         <div className={styles.content}>
-          <Image
-            src="/img/logo.svg"
-            alt="logo"
-            objectFit="contain"
-            height={45}
-            width={135}
-          />
+          <Image src="/img/logo.svg" alt="logo" objectFit="contain" height={45} width={135} />
           <div>
             <RoomCode value={roomId} />
             {room && user?.id === room?.authorId && (
-              <Button
-                outline
-                onClick={() => router.push(`./${roomId}/admin`)}
-              >Visão de Administrador</Button>
+              <Button outline onClick={() => router.push(`./${roomId}/admin`)}>
+                Visão de Administrador
+              </Button>
             )}
           </div>
         </div>
@@ -90,7 +87,9 @@ function RoomDetailsPage() {
         <div className={styles.title}>
           <h1>{room?.title}</h1>
           {questions.length > 0 && (
-            <span>{questions.length} pergunta{questions.length > 1 && 's'}</span>
+            <span>
+              {questions.length} pergunta{questions.length > 1 && 's'}
+            </span>
           )}
         </div>
 
@@ -104,18 +103,17 @@ function RoomDetailsPage() {
           <div className={styles.formFooter}>
             {user ? (
               <div className={styles.userInfo}>
-                <Image
-                  src={user.avatar}
-                  alt={user.name}
-                  objectFit="cover"
-                  height={32}
-                  width={32}
-                /> <span>{user.name}</span>
+                <Image src={user.avatar} alt={user.name} objectFit="cover" height={32} width={32} />{' '}
+                <span>{user.name}</span>
               </div>
             ) : (
-              <span>Para enviar uma pergunta,
-                {/* eslint-disable-next-line react/jsx-child-element-spacing */}
-                <button type="button" onClick={handleAuthenticate}>faça seu login</button>.
+              <span>
+                Para enviar uma pergunta,
+                {}
+                <button type="button" onClick={handleAuthenticate}>
+                  faça seu login
+                </button>
+                .
               </span>
             )}
             <Button type="submit" disabled={!canSubmitQuestion}>
@@ -137,17 +135,19 @@ function RoomDetailsPage() {
               <strong>Nenhuma resposta por aqui...</strong>
               <p>Seja a primeira pessoa a enviar uma pergunta</p>
             </div>
-          ) : questions.map((question) => (
-            <QuestionCard
-              key={question.id}
-              question={question}
-              onLike={() => handleLikeQuestion(question)}
-            />
-          ))}
+          ) : (
+            questions.map((question) => (
+              <QuestionCard
+                key={question.id}
+                question={question}
+                onLike={() => handleLikeQuestion(question)}
+              />
+            ))
+          )}
         </div>
       </main>
     </div>
-  )
+  );
 }
 
-export default RoomDetailsPage
+export default RoomDetailsPage;

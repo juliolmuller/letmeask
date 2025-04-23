@@ -1,36 +1,36 @@
-import Head from 'next/head'
-import Image from 'next/legacy/image'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import type { FormEvent } from 'react'
+import Head from 'next/head';
+import Image from 'next/legacy/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import type { FormEvent, ReactNode } from 'react';
 
-import Button from '~/components/Button'
-import { useAuth } from '~/hooks'
-import { database } from '~/services/firebase'
+import Button from '~/components/Button';
+import { useAuth } from '~/hooks';
+import { database } from '~/services/firebase';
 
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
-function NewRoomPage() {
-  const router = useRouter()
-  const { user } = useAuth()
-  const [roomName, setRoomName] = useState('')
+function NewRoomPage(): ReactNode {
+  const router = useRouter();
+  const { user } = useAuth();
+  const [roomName, setRoomName] = useState('');
 
-  async function handleCreateRoom(event: FormEvent) {
-    event.preventDefault()
+  async function handleCreateRoom(event: FormEvent): Promise<void> {
+    event.preventDefault();
 
-    const reference = database.ref('rooms')
+    const reference = database.ref('rooms');
     const newRoom = await reference.push({
       title: roomName.trim(),
       authorId: user?.id,
       createdAt: new Date().toISOString(),
-    })
+    });
 
-    router.push(`/rooms/${newRoom.key}/admin`)
+    router.push(`/rooms/${newRoom.key}/admin`);
   }
 
   return (
-    (<div className={styles.newRoomPage}>
+    <div className={styles.newRoomPage}>
       <Head>
         <title>Letmeask :: Criar Nova Sala</title>
       </Head>
@@ -48,13 +48,7 @@ function NewRoomPage() {
       </aside>
       <main>
         <div className={styles.mainWrapper}>
-          <Image
-            src="/img/logo.svg"
-            alt="logo"
-            objectFit="contain"
-            height={120}
-            width={320}
-          />
+          <Image src="/img/logo.svg" alt="logo" objectFit="contain" height={120} width={320} />
 
           <h2>Criar uma nova sala</h2>
           <form onSubmit={handleCreateRoom}>
@@ -74,8 +68,8 @@ function NewRoomPage() {
           </p>
         </div>
       </main>
-    </div>)
-  )
+    </div>
+  );
 }
 
-export default NewRoomPage
+export default NewRoomPage;

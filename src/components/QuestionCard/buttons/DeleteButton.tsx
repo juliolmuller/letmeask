@@ -1,8 +1,10 @@
-import type { DeleteButtonProps } from '~/types'
+import { type ReactNode } from 'react';
 
-import styles from '../styles.module.scss'
+import type { DeleteButtonProps } from '~/types';
 
-function DeleteButton({ onClick }: DeleteButtonProps) {
+import styles from '../styles.module.scss';
+
+function DeleteButton({ onClick }: DeleteButtonProps): ReactNode {
   return (
     <button
       type="button"
@@ -33,7 +35,7 @@ function DeleteButton({ onClick }: DeleteButtonProps) {
         />
       </svg>
     </button>
-  )
+  );
 }
 
-export default DeleteButton
+export default DeleteButton;
