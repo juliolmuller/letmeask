@@ -12,6 +12,7 @@
     "postinstall": "node -e \"require('fs').existsSync('.env') || require('fs').copyFileSync('.env.example', '.env')\"",
     "prepare": "husky",
     "commit": "git-cz",
+    "release": "semantic-release",
     "dev": "next dev --port 30303",
     "development": "npm run dev",
     "build": "next build",
