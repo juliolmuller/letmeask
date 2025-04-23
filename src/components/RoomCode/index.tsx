@@ -11,13 +11,17 @@ function RoomCode({ value }: RoomCodeProps): ReactNode {
   }
 
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
-    <div className={styles.roomCode} title="Clique para copiar" onClick={handleCopyToClipboard}>
+    <button
+      type="button"
+      className={styles.roomCode}
+      title="Clique para copiar"
+      onClick={handleCopyToClipboard}
+    >
       <div>
         <Image src="/img/copy.svg" alt="logo" objectFit="contain" height={24} width={24} />
       </div>
       <span>Sala #{value}</span>
-    </div>
+    </button>
   );
 }
 
