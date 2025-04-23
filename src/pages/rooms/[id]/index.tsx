@@ -109,7 +109,6 @@ function RoomDetailsPage(): ReactNode {
             ) : (
               <span>
                 Para enviar uma pergunta,
-                {}
                 <button type="button" onClick={handleAuthenticate}>
                   faça seu login
                 </button>
