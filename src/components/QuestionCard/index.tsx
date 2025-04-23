@@ -1,14 +1,21 @@
-import Image from 'next/legacy/image'
+import Image from 'next/legacy/image';
+import { type ReactNode } from 'react';
 
-import type { QuestionCardProps } from '~/types'
+import type { QuestionCardProps } from '~/types';
 
-import AnsweredButton from './buttons/AnsweredButton'
-import DeleteButton from './buttons/DeleteButton'
-import HighlightButton from './buttons/HighlightButton'
-import LikeButton from './buttons/LikeButton'
-import styles from './styles.module.scss'
+import AnsweredButton from './buttons/AnsweredButton';
+import DeleteButton from './buttons/DeleteButton';
+import HighlightButton from './buttons/HighlightButton';
+import LikeButton from './buttons/LikeButton';
+import styles from './styles.module.scss';
 
-function QuestionCard({ question, onLike, onDelete, onAnswered, onHighlight }: QuestionCardProps) {
+function QuestionCard({
+  question,
+  onLike,
+  onDelete,
+  onAnswered,
+  onHighlight,
+}: QuestionCardProps): ReactNode {
   return (
     <div
       className={`
@@ -40,27 +47,15 @@ function QuestionCard({ question, onLike, onDelete, onAnswered, onHighlight }: Q
             likesCount={question.likesCount}
             onClick={onLike}
           />
-          {onAnswered && (
-            <AnsweredButton
-              isActive={question.isAnswered}
-              onClick={onAnswered}
-            />
-          )}
+          {onAnswered && <AnsweredButton isActive={question.isAnswered} onClick={onAnswered} />}
           {onHighlight && (
-            <HighlightButton
-              isActive={question.isHighlighted}
-              onClick={onHighlight}
-            />
+            <HighlightButton isActive={question.isHighlighted} onClick={onHighlight} />
           )}
-          {onDelete && (
-            <DeleteButton
-              onClick={onDelete}
-            />
-          )}
+          {onDelete && <DeleteButton onClick={onDelete} />}
         </div>
       </footer>
     </div>
-  )
+  );
 }
 
-export default QuestionCard
+export default QuestionCard;

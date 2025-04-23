@@ -1,15 +1,17 @@
-import type { ButtonProps } from '~/types'
+import { type ReactNode } from 'react';
 
-import styles from './styles.module.scss'
+import type { ButtonProps } from '~/types';
 
-function Button({ outline = false, type = 'button', ...props }: ButtonProps) {
+import styles from './styles.module.scss';
+
+function Button({ outline = false, type = 'button', ...props }: ButtonProps): ReactNode {
   return (
     <button
       type={type}
       className={`${styles.button} ${outline ? styles.outline : ''}`}
       {...props}
     />
-  )
+  );
 }
 
-export default Button
+export default Button;

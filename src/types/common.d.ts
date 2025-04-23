@@ -1,40 +1,45 @@
-
-export type User = {
-  id: string
-  name: string
-  avatar: string
+export interface User {
+  avatar: string;
+  id: string;
+  name: string;
 }
 
-export type Room = {
-  title: string
-  authorId: string
-  createdAt: string // parsable to Date
-  closedAt?: string // parsable to Date
+export interface Room {
+  authorId: string;
+  closedAt?: string; // parsable to Date
+  createdAt: string; // parsable to Date
+  title: string;
 }
 
-export type Question = {
-  id: string
-  content: string
+export interface Question {
   author: {
-    name: string
-    avatar: string
-  }
-  isHighlighted: boolean
-  isAnswered: boolean
-  likesCount: number
-  likeId: string | undefined
+    avatar: string;
+    name: string;
+  };
+  content: string;
+  id: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
+  likeId: string | undefined;
+  likesCount: number;
 }
 
-export type FirebaseQuestions = Record<string, {
-  id: string
-  content: string
-  author: {
-    name: string
-    avatar: string
+export type FirebaseQuestions = Record<
+  string,
+  {
+    author: {
+      avatar: string;
+      name: string;
+    };
+    content: string;
+    id: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+    likes: Record<
+      string,
+      {
+        authorId: string;
+      }
+    >;
   }
-  isHighlighted: boolean
-  isAnswered: boolean
-  likes: Record<string, {
-    authorId: string
-  }>
-}>
+>;

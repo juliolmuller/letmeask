@@ -1,39 +1,42 @@
-import Head from 'next/head'
-import Image from 'next/legacy/image'
-import { useRouter } from 'next/router'
-import { useState } from 'react'
-import type { FormEvent } from 'react'
+import Head from 'next/head';
+import Image from 'next/legacy/image';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import type { FormEvent, ReactNode } from 'react';
 
-import Button from '~/components/Button'
-import { useAuth } from '~/hooks'
-import { database } from '~/services/firebase'
+import Button from '~/components/Button';
+import { useAuth } from '~/hooks';
+import { database } from '~/services/firebase';
 
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
-function SignInPage() {
-  const router = useRouter()
-  const { signInWithGoogle } = useAuth()
-  const [roomKey, setRoomKey] = useState('')
+function SignInPage(): ReactNode {
+  const router = useRouter();
+  const { signInWithGoogle } = useAuth();
+  const [roomKey, setRoomKey] = useState('');
 
-  async function handleAuthenticate() {
-    (await signInWithGoogle()) && router.push('/rooms/new')
+  async function handleAuthenticate(): Promise<void> {
+    if (await signInWithGoogle()) {
+      router.push('/rooms/new');
+    }
   }
 
-  async function handleJoinRoom(event: FormEvent) {
-    event.preventDefault()
+  async function handleJoinRoom(event: FormEvent): Promise<void> {
+    event.preventDefault();
 
-    const roomRef = await database.ref(`rooms/${roomKey}`).get()
+    const roomRef = await database.ref(`rooms/${roomKey}`).get();
 
     if (!roomRef.exists()) {
-      alert('Sala não encontrada.')
-      return
-    }
-    if (roomRef.val().closedAt) {
-      alert('Sala já encerrada.')
-      return
+      alert('Sala não encontrada.');
+      return;
     }
 
-    router.push(`/rooms/${roomKey}`)
+    if (roomRef.val().closedAt) {
+      alert('Sala já encerrada.');
+      return;
+    }
+
+    router.push(`/rooms/${roomKey}`);
   }
 
   return (
@@ -58,18 +61,8 @@ function SignInPage() {
 
       <main>
         <div className={styles.mainWrapper}>
-          <Image
-            src="/img/logo.svg"
-            alt="logo"
-            objectFit="contain"
-            height={120}
-            width={320}
-          />
-          <button
-            type="button"
-            className={styles.btnGoogle}
-            onClick={handleAuthenticate}
-          >
+          <Image src="/img/logo.svg" alt="logo" objectFit="contain" height={120} width={320} />
+          <button type="button" className={styles.btnGoogle} onClick={handleAuthenticate}>
             <Image
               src="/img/google-icon.svg"
               alt="Google's logo"
@@ -80,9 +73,7 @@ function SignInPage() {
             Crie sua sala com o Google
           </button>
 
-          <div className={styles.separator}>
-            Entrar em uma sala
-          </div>
+          <div className={styles.separator}>Entrar em uma sala</div>
           <form onSubmit={handleJoinRoom}>
             <input
               type="text"
@@ -97,7 +88,7 @@ function SignInPage() {
         </div>
       </main>
     </div>
-  )
+  );
 }
 
-export default SignInPage
+export default SignInPage;

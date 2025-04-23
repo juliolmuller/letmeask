@@ -1,9 +1,10 @@
-import { useContext } from 'react'
+import { useContext } from 'react';
 
-import { AuthContext } from '~/contexts'
+import { AuthContext } from '~/contexts';
+import { type AuthContextProps } from '~/types';
 
-function useAuth() {
-  return useContext(AuthContext)
+function useAuth(): AuthContextProps {
+  return useContext(AuthContext);
 }
 
-export default useAuth
+export default useAuth;

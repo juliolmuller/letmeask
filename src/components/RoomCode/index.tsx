@@ -1,32 +1,28 @@
-import Image from 'next/legacy/image'
+import Image from 'next/legacy/image';
+import { type ReactNode } from 'react';
 
-import type { ROomCodeProps } from '~/types'
+import type { RoomCodeProps } from '~/types';
 
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
 
-function RoomCode({ value }: ROomCodeProps) {
-  function handleCopyToClipboard() {
-    navigator.clipboard.writeText(value)
+function RoomCode({ value }: RoomCodeProps): ReactNode {
+  function handleCopyToClipboard(): void {
+    navigator.clipboard.writeText(value);
   }
 
   return (
-    <div
+    <button
+      type="button"
       className={styles.roomCode}
       title="Clique para copiar"
       onClick={handleCopyToClipboard}
     >
       <div>
-        <Image
-          src="/img/copy.svg"
-          alt="logo"
-          objectFit="contain"
-          height={24}
-          width={24}
-        />
+        <Image src="/img/copy.svg" alt="logo" objectFit="contain" height={24} width={24} />
       </div>
       <span>Sala #{value}</span>
-    </div>
-  )
+    </button>
+  );
 }
 
-export default RoomCode
+export default RoomCode;
