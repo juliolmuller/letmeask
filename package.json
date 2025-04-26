@@ -21,7 +21,7 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "firebase": "^11.6.0",
+    "firebase": "^11.6.1",
     "next": "^15.3.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -30,9 +30,9 @@
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.1",
+    "@semantic-release/github": "^11.0.2",
     "@semantic-release/npm": "^12.0.1",
-    "@types/node": "^22.14.1",
+    "@types/node": "^22.15.2",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "commitizen": "^4.3.1",
