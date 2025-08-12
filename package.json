@@ -1,0 +1,49 @@
+{
+  "name": "letmeask",
+  "version": "1.0.10",
+  "private": true,
+  "license": "MIT",
+  "authors": [
+    "RocketSeat",
+    "Julio L. Muller"
+  ],
+  "homepage": "https://jlm-letmeask.vercel.app/",
+  "scripts": {
+    "postinstall": "node -e \"require('fs').existsSync('.env') || require('fs').copyFileSync('.env.example', '.env')\"",
+    "prepare": "husky",
+    "commit": "commit",
+    "release": "semantic-release",
+    "dev": "next dev --port 30303",
+    "development": "npm run dev",
+    "build": "next build",
+    "prod": "next start",
+    "production": "npm run prod",
+    "lint": "next lint --fix"
+  },
+  "dependencies": {
+    "firebase": "^11.9.1",
+    "next": "^15.3.4",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@commitlint/prompt-cli": "^19.8.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.3",
+    "@semantic-release/npm": "^12.0.1",
+    "@types/node": "^22.15.33",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "eslint": "^9.29.0",
+    "eslint-config-any": "^2.1.0",
+    "eslint-config-next": "^15.3.4",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.1",
+    "sass": "^1.89.2",
+    "semantic-release": "^24.2.5",
+    "typescript": "^5.8.3"
+  }
+}

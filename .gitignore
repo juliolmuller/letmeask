@@ -1,0 +1,21 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+.DS_Store/
+node_modules/
+
+.npm*
+npm*
+.pnpm*
+pnpm*
+.yarn*
+yarn*
+
+.next/
+.vercel/
+build/
+dist/
+
+.env*
+!.env.example
+.eslintcache
+*.log
