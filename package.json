@@ -21,10 +21,10 @@
     "lint": "next lint --fix"
   },
   "dependencies": {
-    "firebase": "^11.9.1",
-    "next": "^15.3.4",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "firebase": "^12.2.1",
+    "next": "^15.5.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
@@ -38,12 +38,13 @@
     "@types/react-dom": "^19.1.9",
     "eslint": "^9.35.0",
     "eslint-config-any": "^2.2.1",
-    "eslint-config-next": "^15.3.4",
+    "eslint-config-next": "^15.5.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
     "sass": "^1.92.1",
     "semantic-release": "^24.2.7",
     "typescript": "^5.9.2"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }
