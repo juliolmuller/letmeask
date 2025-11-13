@@ -18,32 +18,32 @@
     "build": "next build",
     "prod": "next start",
     "production": "npm run prod",
-    "lint": "next lint --fix"
+    "lint": "eslint --fix src/ eslint.config.mjs next-env.d.ts next.config.ts"
   },
   "dependencies": {
-    "firebase": "^12.2.1",
-    "next": "^15.5.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "firebase": "^12.5.0",
+    "next": "^16.0.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@commitlint/prompt-cli": "^19.8.1",
+    "@commitlint/cli": "^20.1.0",
+    "@commitlint/config-conventional": "^20.0.0",
+    "@commitlint/prompt-cli": "^20.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.5",
-    "@semantic-release/npm": "^12.0.2",
-    "@types/node": "^22.18.1",
-    "@types/react": "^19.1.12",
-    "@types/react-dom": "^19.1.9",
-    "eslint": "^9.35.0",
+    "@semantic-release/github": "^12.0.2",
+    "@semantic-release/npm": "^13.1.1",
+    "@types/node": "^22.19.1",
+    "@types/react": "^19.2.4",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.1",
     "eslint-config-any": "^2.2.1",
-    "eslint-config-next": "^15.5.2",
+    "eslint-config-next": "^16.0.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.1.6",
+    "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
-    "sass": "^1.92.1",
-    "semantic-release": "^24.2.7",
-    "typescript": "^5.9.2"
+    "sass": "^1.94.0",
+    "semantic-release": "^25.0.2",
+    "typescript": "^5.9.3"
   }
 }
