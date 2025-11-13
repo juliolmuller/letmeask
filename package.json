@@ -18,7 +18,7 @@
     "build": "next build",
     "prod": "next start",
     "production": "npm run prod",
-    "lint": "next lint --fix"
+    "lint": "eslint --fix src/ eslint.config.mjs next-env.d.ts next.config.ts"
   },
   "dependencies": {
     "firebase": "^12.5.0",
