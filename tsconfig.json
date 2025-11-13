@@ -23,7 +23,7 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2018"
+    "target": "es2021"
   },
   "include": [
     "next-env.d.ts",
