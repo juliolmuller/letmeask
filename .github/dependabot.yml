@@ -1,20 +1,8 @@
 version: 2
+
 updates:
-  - package-ecosystem: 'bundler'
-    directory: '/'
+  - package-ecosystem: bun
+    directory: /
     schedule:
-      interval: 'weekly'
-      day: 'monday'
-      time: '09:00'
-    open-pull-requests-limit: 10
-    reviewers:
-      - 'juliolmuller'
-    assignees:
-      - 'juliolmuller'
-    commit-message:
-      prefix: 'chore'
-      prefix-development: 'chore'
-      include: 'scope'
-    labels:
-      - 'dependencies'
-      - 'bun'
+      interval: weekly
+    open-pull-requests-limit: 3
